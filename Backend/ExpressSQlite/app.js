@@ -41,7 +41,7 @@ app.use('/sessions/create', sessionController);
 const protectedController = require('./routs/protected');
 app.use('/api/protected', protectedController);
 
-const port = process.env.PORT || 3000;
+const port = 55341;
 
 const server = app.listen(port, function() {
   console.log('Express server listening on port ' + port);
