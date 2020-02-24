@@ -49,7 +49,7 @@ Angular Frontend:
 **Create/Register a user**<br/>
 **POST** */users*<br/>
 body:<br/>
-{username, password, email}<br/>
+{name, password, email}<br/>
 returns:<br/>
 {token}<br/>
 errors:<br/>
