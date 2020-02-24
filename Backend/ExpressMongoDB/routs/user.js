@@ -14,9 +14,9 @@ router.use(bodyParser.json());
 // @desc    Register new user
 // @access  Public
 router.post('/', async function (req, res) {
-  const { username, email, password } = req.body;
+  const { name, email, password } = req.body;
   // Simple validation
-  if(!username || !email || !password) {
+  if(!name || !email || !password) {
     return res.status(400).send('You must send username, email and password');
   }
 
@@ -32,7 +32,7 @@ router.post('/', async function (req, res) {
     const salt = bcrypt.genSaltSync();
     const hashedPassword = bcrypt.hashSync(password, salt);
     const newUser = new User({
-      name: username,
+      name,
       email,
       password: hashedPassword,
       salt,
@@ -43,7 +43,7 @@ router.post('/', async function (req, res) {
     const token = await jwt.sign({ id: newUserEntry.id },
               config.secret, 
               { expiresIn: 86400  });// expires in 24 hours
-    res.status(200).send({ token: token });
+    res.status(200).send({ token });
   }    
   catch(error) {
       res.status(500).send(error.message);

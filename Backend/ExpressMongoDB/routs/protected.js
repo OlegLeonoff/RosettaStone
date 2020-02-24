@@ -11,10 +11,10 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
 
-// @route   GET /api/protected/user-info
+// @route   GET /api/protected/userinfo
 // @desc    User Info
 // @access  Private
-router.get('/user-info', verifyToken, async function(req, res, next) {
+router.get('/userinfo', verifyToken, async function(req, res, next) {
     try {
         const user = await User.findById(req.id)    
         if(!user) {
@@ -42,7 +42,6 @@ async function createAndSendTransaction(userId, recipientName, amount, res) {
     session.startTransaction();
 
     let opts = { session, new: true };
-    // { session };
     
     opts.useFindAndModify = false; // findOneAndUpdate()` without the `useFindAndModify` option set to false are deprecated
     const emitter = await User.findOneAndUpdate({ _id: userId }, 
@@ -69,9 +68,9 @@ async function createAndSendTransaction(userId, recipientName, amount, res) {
     const { id, date, emitterBalance } = transaction; // to avoid 'Cannot use a session that has ended'
     await session.commitTransaction();
     session.endSession();
-    res.status(200).send({trans_token:{id, 
+    res.status(200).send({transaction:{id, 
                                        date, 
-                                       username: recipientName, 
+                                       name: recipientName, 
                                        amount, 
                                        balance: emitterBalance}});
 
