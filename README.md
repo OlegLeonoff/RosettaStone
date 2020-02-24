@@ -124,7 +124,7 @@ dotnet run
 ```
      
 
-For other variands:
+For other variants:
 
 ```csharp
 npm install
