@@ -56,7 +56,7 @@ errors:<br/>
 400: A user with that email already exists<br/>
 400: You must send username and password<br/>
 example:<br/>
-{"username":"John Doo","password":"johnpwd","email":"john@doo.foo"}<br/>
+{"name":"John Doo","password":"johnpwd","email":"john@doo.foo"}<br/>
 {"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6IkFuaW1hbCBQbGFuZXQgVXNlciIsImVtYWlsIjoiMUAxLjEiLCJpZCI6MywiYmFsYW5jZSI6NTAwLCJpYXQiOjE0ODE1ODQ4ODksImV4cCI6MTQ4MTYwMjg4OX0.h4CzCxTOMRk6S8juxM0tRc5pql99XkXlR09pUzVMH9I"}<br/><br/> 
 
 **Login**<br/>
