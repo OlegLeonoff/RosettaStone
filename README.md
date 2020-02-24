@@ -1,8 +1,9 @@
 #Rosetta Stone
+
 ![RosettaStone](rosetta-stone.jpg)
 
 
-It was found near the town of Rosetta about 35 miles (56 km) northeast of Alexandria in August 1799. Inscribed in two languages, Egyptian and Greek, it provided a key to the translation of Egyptian hieroglyphic writing.
+It was found near the town of Rosetta about 35 miles (56 km) northeast of Alexandria (Egypt) in August 1799. Inscribed in two languages, Egyptian and Greek, it provided a key to the translation of Egyptian hieroglyphic writing.
 
 Several languages express the same idea. That's the point.
 
