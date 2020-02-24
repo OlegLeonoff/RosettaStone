@@ -163,7 +163,7 @@ async function sendTransactionList(email, res) {
                                      username: row.name, amount: row.amount, 
                                      balance: row.recipientBalance });    
           });
-    return res.status(200).send({ trans_token: expenseTransactions.concat(incomeTransactions)
+    return res.status(200).send({ transactions: expenseTransactions.concat(incomeTransactions)
         .sort((x, y) => x.date > y.date) });
 }
 
