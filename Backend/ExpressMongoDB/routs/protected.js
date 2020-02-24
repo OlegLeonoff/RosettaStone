@@ -132,7 +132,7 @@ router.get('/transactions', verifyToken, async function(req, res, next) {
 
         const sortedTransactions = incomeTransactionsArr.concat(expenseTransactionsArr)
                                                         .sort((x, y) => x.date > y.date);
-        res.status(200).send({'trans_token': sortedTransactions});    
+        res.status(200).send({'transactions': sortedTransactions});    
     }
     catch(error) {
         res.status(500).send(error.message);
