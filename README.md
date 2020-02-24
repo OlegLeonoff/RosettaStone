@@ -131,4 +131,4 @@ npm install
 npm start 
 ``` 
 
-Now open your browser and input http://localhost:4200
+Now open your browser and input http://localhost:3000
