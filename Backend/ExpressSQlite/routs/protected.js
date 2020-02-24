@@ -23,10 +23,10 @@ async function getAndSendUserData (email, res){
                           'balance': entry.balance});
 }
 
-// @route   GET /api/protected/user-info
+// @route   GET /api/protected/userinfo
 // @desc    User Info
 // @access  Private
-router.get('/user-info', verifyToken, function(req, res, next) {
+router.get('/userinfo', verifyToken, function(req, res, next) {
     getAndSendUserData(req.email, res)
 });
 
@@ -120,7 +120,7 @@ async function createAndSendTransaction (senderEmail, recipientName, amount, res
         return;
     }
 
-    res.status(200).send({trans_token:{id: data.id, date: now, 
+    res.status(200).send({transaction:{id: data.id, date: now, 
                           username: recipientName, amount: amount, balance: data.emitterBalance}});
 }
 

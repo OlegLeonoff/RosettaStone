@@ -28,7 +28,7 @@ async function writeUserAndSendToken(req, res) {
     const hashedPassword = bcrypt.hashSync(req.body.password, salt);
 
     const query = `INSERT INTO users (name, email, password, salt, balance) 
-                   VALUES ('${req.body.username}', '${req.body.email}', '${hashedPassword}', '${salt}', ${config.startBalance})`;
+                   VALUES ('${req.body.name}', '${req.body.email}', '${hashedPassword}', '${salt}', ${config.startBalance})`;
     
     if(await sqlite.run(query)) {
       const token = jwt.sign({ email: req.body.email }, config.secret, {
@@ -46,7 +46,7 @@ async function writeUserAndSendToken(req, res) {
 // @access  Public
 router.post('/', function (req, res) {
     const errorStr = buildMissingParamsString([[req.body.email, 'email'], 
-                            [req.body.username, 'username'],
+                            [req.body.name, 'name'],
                             [req.body.password, 'password']]);
     if(errorStr) {
       res.status(400).send(errorStr); 
