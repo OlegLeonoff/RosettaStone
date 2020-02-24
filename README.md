@@ -18,16 +18,15 @@ This project demonstrates a way to communicate between backend and frontend bein
 Dotnet Core SDK<br/>
 NodeJS<br/>
 npm<br/>
-If your OS is Windows you should have SQLite installed<br/>
+
 
 ## Things of interest
 
-Backend: Server Authorization with Roles
+Dotnet Core Backend: Server Authorization with Roles
 <br/>
-Frontend: Custom Material autocomplete validation
-<br/>
+Angular Frontend:
 2 HttpInterceptors</br>
-## Frontend screenshots</br>
+## Frontend screenshots (Angular as the most mature Material UI version)</br>
 
 ![Sign Up](signup1.png)
 ![Sign Up](signup2.png)
@@ -117,19 +116,17 @@ errors:<br/>
 
 
 
-To launch this project open a shell and input:
+To launch this project open a shell, choose a backend variant, go to its folder and input for ASP.Net Core:
 
 ```csharp
-cd Backend
 dotnet restore
 dotnet run
 ```
      
 
-Open another shell:
+For other variands:
 
 ```csharp
-cd Frontend
 npm install
 npm start 
 ``` 
