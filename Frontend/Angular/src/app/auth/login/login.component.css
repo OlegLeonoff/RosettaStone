@@ -1,0 +1,11 @@
+mat-form-field {
+  width: 300px;
+}
+
+.server-error {
+  width: 300px;
+  color: #f44336;
+  text-align: left;
+  font-size: 75%;
+  margin-top: 20px;
+}

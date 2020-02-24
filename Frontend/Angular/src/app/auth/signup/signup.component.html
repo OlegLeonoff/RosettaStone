@@ -1,0 +1,78 @@
+<section class="mat-typography">
+  <h2 fxLayoutAlign='center' class='mt-2'>Sign Up</h2>
+</section>
+<section fxLayoutAlign='center' class='p-2'>
+  <mat-card>
+    <form fxLayout='column'
+          fxLayoutAlign='center center'
+          [formGroup]='cridentialsGroup'
+          (ngSubmit)='onSubmit()'
+          class='pt-1 pr-2 pb-0 pl-2'>
+      <mat-form-field>
+          <input
+          name='name'
+          matInput
+          placeholder='Your name'
+          required
+          minlength='1'
+          formControlName='name'>
+        <mat-error *ngIf='cridentialsGroup.get("name").hasError("required")'>
+          Field must not be empty
+        </mat-error>
+        <mat-error *ngIf='cridentialsGroup.get("name").hasError("maxlength")'>
+          Field must not be longer than 20 characters
+        </mat-error>
+        <mat-error *ngIf='cridentialsGroup.get("name").hasError("pattern")'>
+          Field must contain one word only having latin letters
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          type='email'
+          matInput
+          placeholder='Your email'
+          name='email'
+          email
+          required
+          formControlName='email'
+          >
+        <mat-error *ngIf='cridentialsGroup.get("email").hasError("required")'>
+          Field must not be empty
+        </mat-error>
+        <mat-error *ngIf='!cridentialsGroup.get("email").hasError("required")'>
+          Email is invalid
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field hintLabel='Should be at least 7 characters long'>
+        <input
+          type='password'
+          name='password'
+          matInput
+          placeholder='Your password'
+          required
+          minlength='6'
+          formControlName='password'
+          >
+          <mat-hint align='end'>{{cridentialsGroup.get('password').value?.length}}/7</mat-hint>
+        <mat-error *ngIf='cridentialsGroup.get("password").hasError("required")'>
+          Field must not be empty
+        </mat-error>
+        <mat-error *ngIf='!cridentialsGroup.get("password").hasError("required")'>
+          Has to be at least 7 characters long
+        </mat-error>
+      </mat-form-field>
+      <div *ngIf='serverError' class='server-error'>
+        {{ serverError }}
+      </div>
+      <button
+        type='submit'
+        mat-raised-button
+        color='primary'
+        class='mt-2'
+        [disabled]='cridentialsGroup.invalid'
+      >
+          Sign up
+      </button>
+    </form>
+  </mat-card>
+</section>

@@ -1,0 +1,8 @@
+<mat-nav-list>
+  <a *ngIf='isAuth' mat-list-item routerLink='/send-money' (click)='close()'>Send money</a>
+  <a *ngIf='isAuth' mat-list-item routerLink='/history' (click)='close()'>History</a>
+  <a *ngIf='!isAuth' mat-list-item routerLink='/login' (click)='close()'>Login</a>
+  <a *ngIf='!isAuth' mat-list-item routerLink='/signup' (click)='close()'>Sign Up</a>
+  <a *ngIf='isAuth' mat-list-item (click)='logout()'>Logout</a>
+</mat-nav-list>
+

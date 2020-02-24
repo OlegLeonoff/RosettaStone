@@ -1,0 +1,24 @@
+mat-card {
+  width: 800px;
+  padding: 20px;
+}
+
+table {
+  width: 100%;
+}
+
+
+th,
+td,
+mat-paginator,
+.mat-select,
+::ng-deep .mat-select-value,
+::ng-deep .mat-select,
+::ng-deep .mat-option-text{
+  font-size: 1.1rem;
+}
+
+
+::ng-deep .mat-form-field-infix {
+  height: 16px;
+}

@@ -1,0 +1,48 @@
+<section class="mat-typography">
+  <h2 fxLayoutAlign='center' class='mt-2'>Send Money</h2>
+</section>
+<section fxLayoutAlign='center' class='p-2'>
+  <mat-card>
+    <form fxLayout='column'
+          fxLayoutAlign='center center'
+          (ngSubmit)='onSubmit()'
+          [formGroup]='sendMoneyGroup'
+          class='pt-1 pr-2 pb-0 pl-2'>
+        <mat-form-field hintLabel='Start typing'>
+          <input
+            matInput
+            placeholder='Choose a user'
+            [matAutocomplete]='auto'
+            formControlName='userInput' />
+        </mat-form-field>
+        <mat-autocomplete #auto='matAutocomplete' [displayWith]='displayFn'>
+          <ng-container *ngIf='!isLoading'>
+            <mat-option *ngFor='let user of filteredUsers' [value]='user'>
+              <span>{{ user.name }}</span>
+            </mat-option>
+          </ng-container>
+        </mat-autocomplete>
+        <mat-form-field class='example-full-width'>
+          <input
+            matInput
+            placeholder='Choose amount'
+            formControlName='amount'
+            type='number'
+            min='0'
+          />
+        </mat-form-field>
+        <div *ngIf='serverError' class='server-error'>
+          {{ serverErrorStr }}
+        </div>
+        <button
+        type='submit'
+        mat-raised-button
+        color='primary'
+        class='my-1'
+        [disabled]='sendMoneyGroup.invalid'
+      >
+          Send
+      </button>
+    </form>
+  </mat-card>
+</section>
