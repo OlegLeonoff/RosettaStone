@@ -1,11 +1,7 @@
-# Rosetta Stone
-
-![RosettaStone](rosetta-stone.jpg)
+# Multivariant Fullstack Project
 
 
-It was found near the town of Rosetta about 35 miles (56 km) northeast of Alexandria (Egypt) in August 1799. Inscribed in two languages, Egyptian and Greek, it provided a key to the translation of Egyptian hieroglyphic writing.
-
-Several languages express the same idea. That's the point of the project. It contains 3 variants of backend and 3 variants of frontend. Totally 3x3=9 different fullstack combinations for the same functionality.
+Several realisaton of the same idea. That's the point of the project. It contains 3 variants of backend and 3 variants of frontend. Totally 3x3=9 different fullstack combinations for the same functionality.
 
 ![Scheme](scheme.jpg)
 
