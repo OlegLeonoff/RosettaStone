@@ -34,7 +34,7 @@ async function writeUserAndSendToken(req, res) {
       const token = jwt.sign({ email: req.body.email }, config.secret, {
           expiresIn: 86400 // expires in 24 hours
       });
-      res.status(200).send({ token: token });
+      res.status(200).send({ token });
     }
     else {
       res.status(500);
@@ -45,6 +45,7 @@ async function writeUserAndSendToken(req, res) {
 // @desc    Register a new user
 // @access  Public
 router.post('/', function (req, res) {
+  try {
     const errorStr = buildMissingParamsString([[req.body.email, 'email'], 
                             [req.body.name, 'name'],
                             [req.body.password, 'password']]);
@@ -53,6 +54,10 @@ router.post('/', function (req, res) {
       return;
     }
     writeUserAndSendToken(req, res);
+  }
+  catch (e) {
+    res.status(500);
+  }
 });
 
 module.exports = router;

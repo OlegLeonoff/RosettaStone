@@ -15,32 +15,46 @@ const sqlite = require('../db/db');
 async function isRegisteredUser (email, password){
   const query = `SELECT password, salt from users WHERE email='${email}'`;
   const entry = await sqlite.get(query);
+  if(!entry) {
+    return false;
+  }
   const hashedPassword = bcrypt.hashSync(password, entry.salt);
   return hashedPassword === entry.password;
 }
 
-async function sendToken(email, password, res) {    
-    if(!await isRegisteredUser(email, password)) {
-      res.status(401).send('Invalid email or password');
-      return;
-    }
-    const token = jwt.sign({ email: email }, config.secret, {
-      expiresIn: 86400 // expires in 24 hours
-    });
-    res.status(200).send({ token: token });
+function sendToken(id, res) {    
+  const token = jwt.sign({ id }, config.secret, {
+    expiresIn: 86400 // expires in 24 hours
+  });
+  res.status(200).send({ token });
 } 
 
 
 // @route   POST /sessions/create
 // @desc    Auth user
 // @access  Public
-router.post('/', function (req, res) {
-  const { email, password } = req.body;
-  if(!email || !password){
-    res.status(400).send('You must send email and password'); 
-    return;
+router.post('/', async function (req, res) { 
+    const { email, password } = req.body;
+    if(!email || !password){
+      res.status(400).send('You must send email and password'); 
+      return;
+    }
+    try {
+      const query = `SELECT id, password, salt from users WHERE email='${email}'`;
+      const entry = await sqlite.get(query);
+
+      if(entry) {
+        const hashedPassword = bcrypt.hashSync(password, entry.salt);
+        if(hashedPassword === entry.password) {
+          sendToken(entry.id, res);
+          return;
+        }
+      }
+      res.status(401).send('Invalid email or password');          
+    }
+    catch(error) {
+      res.status(500).send(error.message);
   }
-  sendToken(req.body.email, req.body.password, res);
 });
 
 module.exports = router;

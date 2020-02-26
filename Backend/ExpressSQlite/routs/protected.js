@@ -8,10 +8,11 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
 
-async function getAndSendUserData (email, res){
+async function getAndSendUserData (id, res){
     const query = `SELECT id, name, email, balance 
                    FROM users 
-                   WHERE email='${email}'`;
+                   WHERE id='${id}'`;
+    console.log('query=', query);
     const entry = await sqlite.get(query);
     if(!entry) {
         res.status(400).send('User not found');
@@ -27,26 +28,32 @@ async function getAndSendUserData (email, res){
 // @desc    User Info
 // @access  Private
 router.get('/userinfo', verifyToken, function(req, res, next) {
-    getAndSendUserData(req.email, res)
+    getAndSendUserData(req.id, res)
 });
 
-async function getAndSendUserList (filter, res){
+async function getAndSendUserList (filter, req, res){
     let userList = [];
     const query = `SELECT * 
-                   FROM users
-                   WHERE name LIKE '%${filter}%'`
+                FROM users
+                WHERE name LIKE '%${filter}%'`
     await sqlite.each(query, [], function(row) {
-              userList.push({id: row.id, name: row.name});    
-          })
+            if(row.id !== req.id) {  // req.id been set in verifyToken function
+                userList.push({id: row.id, name: row.name});    
+            }});
 
-    res.status(200).send(userList);
+    res.status(200).send(userList); 
 }
 
 // @route   POST /api/protected/users/list
 // @desc    List of all users with filter
 // @access  Private
 router.post('/users/list', verifyToken, function(req, res, next) {
-    getAndSendUserList(req.body.filter, res)
+    try {
+        getAndSendUserList(req.body.filter, req, res);
+    }
+    catch (e) {
+        res.status(500);
+    }
 });
 
 
@@ -61,10 +68,11 @@ async function getTransactionData(emitterId, amount, date) {
     return entry;
 }
 
-async function createAndSendTransaction (senderEmail, recipientName, amount, res){
+async function createAndSendTransaction (senderId, recipientName, amount, res){
+    try {
     let query = `SELECT id, name, email, balance 
                  FROM users 
-                 WHERE email='${senderEmail}'`;
+                 WHERE id='${senderId}'`;
     let entry = await sqlite.get(query);
     if(!entry) {
         res.status(400).send('User not found');  // sender not found in db
@@ -122,26 +130,26 @@ async function createAndSendTransaction (senderEmail, recipientName, amount, res
 
     res.status(200).send({transaction:{id: data.id, date: now, 
                           username: recipientName, amount: amount, balance: data.emitterBalance}});
+    }
+    catch (e) {
+        res.status(500);
+    }
 }
 
 // @route   POST /api/protected/transactions
 // @desc    Creates a transaction
 // @access  Private
 router.post('/transactions', verifyToken, function(req, res, next) {
-    createAndSendTransaction(req.email, req.body.name, req.body.amount, res)
+    try {
+        createAndSendTransaction(req.id, req.body.name, req.body.amount, res);
+    }
+    catch (e) {
+        res.status(500);
+    }
 });
 
 
-async function sendTransactionList(email, res) {
-    let query = `SELECT id
-                 FROM users 
-                 WHERE email='${email}'`;
-    let entry = await sqlite.get(query); // here is a separate query (instead of common join) to verify if user exists
-    if(!entry) {
-        res.status(401).send('Invalid user');
-        return;
-    }
-    const userId = entry.id;
+async function sendTransactionList(userId, res) {
     let expenseTransactions = [];
     query = `SELECT transactions.id, date, name, amount, emitterBalance 
              FROM transactions
@@ -172,7 +180,12 @@ async function sendTransactionList(email, res) {
 // @desc    List of logged user transactions
 // @access  Private
 router.get('/transactions', verifyToken, function(req, res, next) {
-    sendTransactionList(req.email, res)
+    try {
+        sendTransactionList(req.id, res)
+    }
+    catch (e) {
+        res.status(500);
+    }
 });
 
 module.exports = router;

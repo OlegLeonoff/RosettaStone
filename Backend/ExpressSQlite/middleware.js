@@ -16,7 +16,7 @@ function verifyToken(req, res, next) {
     if (err) {
         return res.status(401).send('UnauthorizedError');
     }
-    req.email = decoded.email;
+    req.id = decoded.id;
     next();
   });
 }
