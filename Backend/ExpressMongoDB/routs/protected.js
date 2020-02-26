@@ -145,12 +145,12 @@ router.get('/transactions', verifyToken, async function(req, res, next) {
 // @desc    List of all users with filter
 // @access  Private
 router.post('/users/list', verifyToken, async function(req, res, next) {
-    try {
+    try {         
         const users = await User.find({name: new RegExp(req.body.filter, 'i')});
 
         const usersData = users.map(user => {
             return {id: user.id, name: user.name};
-        });
+        }).filter(user => user.id !== req.id); // req.id been set in verifyToken function
         res.status(200).send(usersData);
     }
     catch(error) {

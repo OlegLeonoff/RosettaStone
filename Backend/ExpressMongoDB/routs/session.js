@@ -14,7 +14,7 @@ function sendToken(id, res) {
     const token = jwt.sign({ id }, config.secret, {
       expiresIn: 86400 // expires in 24 hours
     });
-    res.status(200).send({ token: token });
+    res.status(200).send({ token });
 } 
 
 // @route   POST /sessions/create
@@ -28,15 +28,15 @@ router.post('/', async function (req, res) {
     }
     try {
       const user = await User.findOne({ email });
-        if(user) {
-          const hashedPassword = bcrypt.hashSync(password, user.salt);
-          if(hashedPassword === user.password) {
-            sendToken(user.id, res);
-            return;
-          }
+      if(user) {
+        const hashedPassword = bcrypt.hashSync(password, user.salt);
+        if(hashedPassword === user.password) {
+          sendToken(user.id, res);
+          return;
         }
-        res.status(401).send('Invalid email or password');          
       }
+      res.status(401).send('Invalid email or password');          
+    }
     catch(error) {
       res.status(500).send(error.message);
       return;
