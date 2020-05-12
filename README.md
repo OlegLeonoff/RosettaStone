@@ -1,7 +1,7 @@
 # Multivariant Fullstack Project
 
 
-Several realisaton of the same idea. That's the point of the project. It contains 3 variants of backend and 3 variants of frontend. Totally 3x3=9 different fullstack combinations for the same functionality.
+Several realisatons of the same idea. That's the point of the project. It contains 3 variants of backend and 3 variants of frontend. Totally 3x3=9 different fullstack combinations for the same functionality.
 
 ![Scheme](scheme.jpg)
 
