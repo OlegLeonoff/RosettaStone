@@ -94,7 +94,7 @@ public class TokenController : Controller
             }
             catch (Exception)
             {
-                return BadRequest("Password should contain at least 7 symbols: at least one digit, one lowercase and one uppercase letter");
+                return BadRequest("Bad request");
             }
 
             var token = CreateToken(newUser.Id, newUser.Email);
