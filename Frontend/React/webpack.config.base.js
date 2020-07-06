@@ -2,19 +2,13 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const _ = require("lodash");
 
-const VENDOR_LIBS = ['react', 
-                     'react-dom', 
-                     'react-router-dom',
-                     'mobx',
-                     'mobx-react-lite'
-];
 
-module.exports = {
+const defaults = {
   mode: 'development',
   entry: {
     main: './src/main.tsx',
-    // vendor: VENDOR_LIBS
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -24,7 +18,9 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.ts', '.tsx']
   },
-  watch: true,
+  performance: {
+    hints: false
+  },
   module: {
     rules: [
       {
@@ -59,4 +55,10 @@ module.exports = {
     },
     usedExports: true,
   }
+};
+
+module.exports.defaults = defaults;
+
+module.exports.merge = function merge(config) {
+  return _.merge({}, defaults, config);
 };

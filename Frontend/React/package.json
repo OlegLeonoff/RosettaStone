@@ -2,11 +2,10 @@
   "name": "virtual-money",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.tsx",
   "scripts": {
-    "start": "webpack-dev-server",
-    "build": "webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack-dev-server --open --config webpack.config.dev.js",
+    "build": "webpack --config webpack.config.prod.js"
   },
   "author": "",
   "license": "ISC",

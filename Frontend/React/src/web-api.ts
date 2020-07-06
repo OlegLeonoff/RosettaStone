@@ -9,7 +9,7 @@ class WebApi {
   _axios = axios;
 
   constructor() {
-    this._axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL;
+    this._axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL || 'http://localhost:55341';
     this._axios.defaults.headers.common['Content-Type'] = 'application/json;charset=UTF-8';
     this._axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
   }
