@@ -1,4 +1,5 @@
-import React, { useState, useEffect, ChangeEvent } from "react";
+import * as React from 'react';
+import { useState, useEffect, ChangeEvent } from 'react';
 import { TextField, makeStyles } from '@material-ui/core';
 import { ITextFieldData } from '../../interfaces';
 

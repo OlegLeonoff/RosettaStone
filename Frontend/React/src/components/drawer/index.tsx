@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { Drawer, List, ListItem, ListItemText, ListItemIcon,
          Hidden }from '@material-ui/core';
@@ -12,7 +12,7 @@ const logoutFn = (event: React.MouseEvent<HTMLDivElement, MouseEvent>): void => 
   localStorage.removeItem("jwtToken");
 }
 
-const TheDrawer = observer((props) => { 
+const TheDrawer = observer(() => { 
 
   const sendMoney = (
     <ListItem button component={Link} to='/send-money'>

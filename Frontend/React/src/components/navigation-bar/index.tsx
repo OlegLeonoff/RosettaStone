@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import * as React from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Button, 
          Hidden, IconButton }from '@material-ui/core';
@@ -7,6 +8,10 @@ import { observer } from 'mobx-react';
 import store from '../../store';
 import MenuIcon from '@material-ui/icons/Menu';
 
+
+interface IProps {
+  toggleDrawer:  (event: React.KeyboardEvent | React.MouseEvent) => void
+}
 
 const useStyles = makeStyles({
   title: {
@@ -23,11 +28,11 @@ const useStyles = makeStyles({
   },
   userInfo: {
     marginRight: '12px'
-  },
+  }
 });
 
 
-const NavigationBar = observer((props) => {
+const NavigationBar = observer((props: IProps) => {
 
   useEffect(() => {
     (async () => {
@@ -90,7 +95,7 @@ const NavigationBar = observer((props) => {
         className={classes.menuButton}
         color="inherit"
         aria-label="Menu"
-        onClick={e => props.toggleDrawer()}
+        onClick={e => props.toggleDrawer(e)}
       >
         <MenuIcon />
       </IconButton> 

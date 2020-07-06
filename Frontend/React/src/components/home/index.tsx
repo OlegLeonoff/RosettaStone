@@ -1,8 +1,5 @@
-import React from 'react';
-
-import { Grid, Button, Card, CardActions,
-  CardContent, Typography, makeStyles } from '@material-ui/core';
-
+import * as React from 'react';
+import { Grid, Card, Typography, makeStyles } from '@material-ui/core';
 
 
 const useStyles = makeStyles({
@@ -51,7 +48,6 @@ const Home = () => {
           </Card>
         </Grid>
       </>);
-
 }
 
 export default Home;

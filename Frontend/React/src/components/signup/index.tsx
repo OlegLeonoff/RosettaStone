@@ -1,7 +1,8 @@
-import React, { useState, useEffect, SyntheticEvent, ChangeEvent } from "react";
+import * as React from 'react';
+import { useState, useEffect, SyntheticEvent, ChangeEvent } from 'react';
 import { Grid, Button, Card, CardActions,
          CardContent, Typography, makeStyles } from '@material-ui/core';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 import { observer } from 'mobx-react';
 import store from '../../store';
 import NameTextField from '../name-text-field';
@@ -88,7 +89,7 @@ const Signup = observer(() => {
 
 
   if(store.authorization.auth) {
-    return <Redirect to='/send-money' />
+    // return <Redirect to='/send-money' />
   }
   
   return (

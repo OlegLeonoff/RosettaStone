@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef, SyntheticEvent, ChangeEvent } from "react";
+import * as React from "react";
+import { useState, useEffect, useRef, SyntheticEvent, ChangeEvent } from "react";
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { TextField, CircularProgress, makeStyles } from '@material-ui/core';
   

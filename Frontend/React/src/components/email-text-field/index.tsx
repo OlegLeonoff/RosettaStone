@@ -1,4 +1,5 @@
-import React, { useState, useEffect, ChangeEvent } from "react";
+import * as React from 'react';
+import { useState, useEffect, ChangeEvent } from 'react';
 import { TextField, makeStyles } from '@material-ui/core';
 import { ITextFieldData } from '../../interfaces';
 
@@ -14,7 +15,7 @@ interface IProps {
 
 const EmailTextField = (props: IProps) => {
   const [data, setData] = useState({isValid: false, message: 'This field is required', text: ''});
-  const [blur, setBlur] = useState(false)
+  const [blur, setBlur] = useState(false);
   const { handleData } = props;
   const classes = useStyles();
 

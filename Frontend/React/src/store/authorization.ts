@@ -1,5 +1,5 @@
 import { decorate, observable, computed, action } from "mobx";
-import { IUserInfo, ILoginData, ISignupData } from '../interfaces';
+import { IUserInfo, ILoginData, ISignupData, INameAndId } from '../interfaces';
 import webApi from '../web-api'
 
 
@@ -21,7 +21,7 @@ export class AuthorizationStore {
   public usersFilter = '';
 
   @observable
-  public filteredUsers = [];
+  public filteredUsers: INameAndId[] = [];
 
   @action.bound
   public setBalance (balance: number) {
