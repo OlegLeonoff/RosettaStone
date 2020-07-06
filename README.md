@@ -24,9 +24,7 @@ Angular Frontend: 2 HttpInterceptors</br>
 SQLite Backend: transaction queries
 </br>
 React MobX:
-ES6 modules are singletons:
- https://books.google.ru/books?id=rec6CwAAQBAJ&pg=PA118&lpg=PA118&dq=you+don%27t+know+js+module+as+singleton&source=bl&ots=RMW8g2Tsli&sig=ACfU3U3B7VgFzCpcUBCaHlJl7paW9nR0Jg&hl=ru&sa=X&ved=2ahUKEwiExpfdmuvnAhULAxAIHb6TCpwQ6AEwAHoECF8QAQ
-So MobX store module can be used by simple import.
+Webpack config is "ejected" (i.e. custom). Lazy components loading.
 
 ## Frontend screenshots (Angular as the most mature Material UI version)</br>
 
