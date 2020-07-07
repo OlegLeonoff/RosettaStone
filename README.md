@@ -132,3 +132,7 @@ npm start
 ``` 
 
 Now open your browser and input http://localhost:3000
+
+For React project there is a picture of bundles.
+
+![Bundle Analyzer](BundleAnalyzer.png)
